@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <!-- DISPLAYS 1 TABLE WITH CURRENT USER'S FRIENDS, AND ONE TABLE OF USERS THAT ARE NOT USER'S FRIEND -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Welcome {{ user.name }}
+      </h1>
+      {% if not friends %}
+      <p class="subtitle">
+        You Have No Friends, Add one. 
+      </p>
+      {% elif friends %}
+      
+      <p class="subtitle">
+        Here is a list of your friends 
+      </p>
+      {% endif %}
+    </div>
+  </section>
+  
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <thead>
+      <tr>
+        <th>Alias</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for friend in friends %}
+      <tr>
+        <td>{{ friend.friended_user.alias }}</td>
+        <td><a href="/user/{{ friend.friended_user.id }}">View Profile</a> | <a href="/remove_friend/{{ friend.friended_user.id }}">Remove Friend</a></td>
+      </tr>
+      {% endfor %}
+     
+    </tbody>
+  </table>
+  
+  <br>
+  <br>
+  <br>
+  <!-- TABLE OF NOT FRIENDS -->
+  
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <thead>
+      <tr>
+        <th>Alias</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for not_friend in not_friends %}
+      
+      <tr>
+        <td><a href="/user/{{ not_friend.id }}">{{not_friend.alias }}</a></td>
+        <td><a href="/add_friend/{{ not_friend.id }}"><button class="button is-link">Add Friend</button></a></td>
+      </tr>
+     
+      {% endfor %}
+      
+      
+      
+      
+
+    </tbody>
+  </table>
+   
+  <a href="/logout"><button class="button is-link">Logout</button></a>
+  </body>
+</html>

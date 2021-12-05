@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <!-- DISPLAYS USER PROFILE SPECIFIED BY USER CLICKING "VIEW PROFILE" FROM /friends -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        {{ user.alias }} 's Profile
+      </h1>
+      <br>
+      <p class="subtitle">
+        Name: {{ user.name }}
+      </p>
+      <p class="subtitle">
+        Email Address: {{ user.email }}
+      </p>
+    </div>
+  </section>
+  <a href="/logout"><button class="button is-link">Logout</button></a>
+  <a href="/friends"><button class="button is-link">Home</button></a>
+  </body>
+</html>

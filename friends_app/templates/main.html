@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- DISPLAYS USER LOGIN AND REGISTRATION FORMS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | Register</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  </head>
+  <body>
+  <section class="section has-text-centered">
+    <div class="container">
+      <h1 class="title">
+        Welcome!
+      </h1>
+    </div>
+    {% if messages %}
+        <ul class="messages">    
+          {% for message in messages %}    
+            <li {% if message.tags %} style="color:red;" class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+           {% endfor %}
+          </ul>
+      {% endif %}
+  </section>
+  <div class="columns">
+    <div class="column is-half">
+      <!-- REGISTRATION FORM -->
+      <section class="section has-text-centered">
+        <div class="container">
+          <h1 class="title">
+            Register
+          </h1>
+        </div>
+      </section>
+     
+      <form action="/register" method="post">
+        {% csrf_token %}
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input name='name' class="input" type="text" placeholder="John Doe" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Alias</label>
+          <div class="control">
+            <input name='alias' class="input" type="text" placeholder="Doe_man" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input name='email' class="input" type="email" placeholder="developer@example.net" required>
+          </div>
+        </div>
+
+        <label class="label">Date Of Birth</label>
+        <input name="dob" type="date">
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input name='password' class="input" type="password" required>
+          </div>
+          <p class="help is-danger">8 or more characters.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input name='confirm' class="input" type="password" required>
+          </div>
+          <p class="help is-danger">Passwords MUST match</p>
+        </div>
+
+
+        <button class="button is-link">Register</button>
+
+
+      </form>
+    </div>
+    <div class="column">
+       <!-- LOGIN FORM -->
+       <section class="section has-text-centered">
+        <div class="container">
+          <h1 class="title">
+            Log In
+          </h1>
+        </div>
+      </section>
+      
+      <form action="/login" method="post">
+        {% csrf_token %}
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input name='email' class="input" type="email" placeholder="developer@example.net" required>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input name='password' class="input" type="password" required>
+          </div>
+        </div>
+
+       
+
+
+        <button class="button is-link">Log In</button>
+
+
+      </form>
+    </div>
+
+
+
+
+
+
+    </div>
+   
+  </div>
+
+  </body>
+</html>
